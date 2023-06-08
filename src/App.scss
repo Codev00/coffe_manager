@@ -1,0 +1,12 @@
+@import "./index.scss";
+
+.App {
+   height: 100vh;
+   background-color: $primary_Color;
+   color: $text_Color;
+}
+
+#Dark {
+   background-color: $dark_Theme;
+   color: $text_dark_Color;
+}
