@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-}
-
 $primary_Color: #fff;
-$text_Color: #000;
+$text_Color: #16a34a;
 
 // Dark
 $dark_Theme: #333;
 $text_dark_Color: #fff;
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   color: $text_Color;
+   text-decoration: none;
+}

@@ -1,8 +1,17 @@
 import React from "react";
-import Default from "../../layout/Default/Default";
+import "./Home.scss";
+import { Room, Table } from "../../components";
 
 const Home = () => {
-   return <div>Home</div>;
+   return (
+      <div className="bodyHome">
+         <div className="main">
+            <Room />
+            <Table />
+         </div>
+         <div className="detail">detail</div>
+      </div>
+   );
 };
 
 export default Home;

@@ -7,7 +7,7 @@ import avatar from "../../components/icon/ys.jpg";
 const Navbar = () => {
    const data = [
       {
-         title: "Trang Chủ",
+         title: "Đặt Hàng",
          path: "/",
       },
       {
@@ -19,8 +19,8 @@ const Navbar = () => {
          path: "/bill",
       },
       {
-         title: "About",
-         path: "/about",
+         title: "Quản Lý",
+         path: "/manager",
       },
    ];
 
@@ -32,7 +32,7 @@ const Navbar = () => {
       <div className="navBar bg-slate-900 text-yellow-50">
          <div className="logo">
             <img src={logo} alt="" />
-            <span>
+            <span className="text-white">
                Cafe <span className="text-green-600">Manager</span>
             </span>
          </div>
