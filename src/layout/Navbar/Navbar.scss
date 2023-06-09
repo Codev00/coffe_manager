@@ -1,0 +1,182 @@
+.navBar {
+   display: flex;
+   flex-direction: row;
+   height: 4.2rem;
+   width: 100%;
+   gap: 7rem;
+   align-items: center;
+   padding: 0 4rem;
+   justify-content: space-between;
+   .logo {
+      display: flex;
+      align-items: center;
+      width: 5rem;
+      gap: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1;
+      img {
+         width: 60px;
+         height: 60px;
+      }
+   }
+   .body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      font-size: 1.3rem;
+
+      .menu {
+         display: flex;
+         gap: 1rem;
+         margin-left: 2rem;
+         .navItem {
+            a {
+               text-decoration: none;
+               font-weight: bold;
+            }
+         }
+         .active {
+            border-bottom: 3px solid rgb(22, 163, 74) !important;
+            border-top: 3px solid rgb(22, 163, 74) !important;
+
+            opacity: 1;
+            & > a > span {
+               color: white !important;
+            }
+         }
+      }
+
+      .status {
+         display: flex;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         gap: 20px;
+         .notify {
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+            cursor: pointer;
+            img {
+               height: 30px;
+               width: 40px;
+            }
+         }
+         .user {
+            max-width: 100px;
+            padding: 1rem;
+            background: linear-gradient(
+               106deg,
+               rgba(255, 225, 188, 1) 22%,
+               rgba(255, 207, 209, 1) 52%,
+               rgba(243, 198, 241, 1) 91%
+            );
+            padding: 3px;
+            border-radius: 50px;
+            cursor: pointer;
+            img {
+               width: 50px;
+               height: 50px;
+               border-radius: 50px;
+            }
+         }
+      }
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .navBar {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 70%;
+      align-items: flex-start;
+      padding: 0 1rem;
+      gap: 2rem;
+      position: absolute;
+      justify-content: flex-start;
+      padding-top: 1.5rem;
+      .logo {
+         display: flex;
+         align-items: center;
+         width: 5rem;
+         gap: 20px;
+         font-size: 1.5rem;
+         font-weight: bold;
+         line-height: 1;
+         img {
+            width: 60px;
+            height: 60px;
+         }
+      }
+      .body {
+         display: flex;
+         flex-direction: column-reverse;
+         align-items: flex-start;
+         justify-content: space-between;
+         width: 90%;
+         font-size: 1.3rem;
+         gap: 2rem;
+         .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-left: 0;
+            .navItem {
+               a {
+                  text-decoration: none;
+                  font-weight: bold;
+               }
+            }
+            .active {
+               background-color: rgb(22, 163, 74) !important;
+               opacity: 1;
+               & > a > span {
+                  color: white !important;
+               }
+            }
+         }
+
+         .status {
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            .notify {
+               width: 40px;
+               height: 40px;
+               padding: 5px;
+               cursor: pointer;
+               img {
+                  height: 30px;
+                  width: 40px;
+               }
+            }
+            .user {
+               max-width: 100px;
+               padding: 1rem;
+               background: linear-gradient(
+                  106deg,
+                  rgba(255, 225, 188, 1) 22%,
+                  rgba(255, 207, 209, 1) 52%,
+                  rgba(243, 198, 241, 1) 91%
+               );
+               padding: 3px;
+               border-radius: 50px;
+               img {
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50px;
+               }
+            }
+         }
+      }
+   }
+}
