@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.scss";
 import { Room, Table } from "../../components";
+import Order from "../../components/Orders/Order";
 
 const Home = () => {
    return (
@@ -9,7 +10,7 @@ const Home = () => {
             <Room />
             <Table />
          </div>
-         <div className="detail">detail</div>
+         <Order />
       </div>
    );
 };

@@ -1,0 +1,32 @@
+.Search {
+   display: flex;
+   align-items: center;
+   height: 50px;
+   gap: 1rem;
+   .title {
+      font-weight: bold;
+   }
+   .bodySearch {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+      position: relative;
+      border-bottom: 2px solid greenyellow;
+      padding: 0 5px;
+      & > input {
+         margin-left: 20px;
+         height: 40px;
+         padding: 5px 10px;
+         border-radius: 0.7rem;
+      }
+      & > input:focus {
+         outline: none;
+      }
+      & > label {
+         color: greenyellow;
+         position: absolute;
+         font-size: 1.3rem;
+      }
+   }
+}

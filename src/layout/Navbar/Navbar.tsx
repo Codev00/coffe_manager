@@ -1,33 +1,25 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import logo from "../../components/icon/Logo.svg";
 import bell from "../../components/icon/Bell.svg";
 import avatar from "../../components/icon/ys.jpg";
+import { NavbarTitle } from "../../data";
 const Navbar = () => {
-   const data = [
-      {
-         title: "Đặt Hàng",
-         path: "/",
-      },
-      {
-         title: "Nhập Hàng",
-         path: "/import",
-      },
-      {
-         title: "Hoá Đơn",
-         path: "/bill",
-      },
-      {
-         title: "Quản Lý",
-         path: "/manager",
-      },
-   ];
-
    const [selected, setSelected] = useState(0);
+   const param = useParams();
+   const navigate = useNavigate();
+   const curId = useRef<number>(0);
    const handleSelected = (id: number): void => {
       setSelected(id);
+      curId.current = id;
+      console.log(curId.current);
    };
+   useLayoutEffect(() => {
+      navigate("/");
+      setSelected(curId.current);
+      return () => {};
+   }, []);
    return (
       <div className="navBar bg-slate-900 text-yellow-50">
          <div className="logo">
@@ -38,7 +30,7 @@ const Navbar = () => {
          </div>
          <div className="body">
             <div className="menu">
-               {data.map((item, id) => (
+               {NavbarTitle.map((item, id) => (
                   <div
                      className={`navItem  px-2.5 py-1.5 rounded-lg ${
                         selected === id ? "active" : ""

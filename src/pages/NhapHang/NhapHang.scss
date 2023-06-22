@@ -1,0 +1,9 @@
+.bodyImport {
+   display: grid;
+   grid-template-columns: 16rem auto;
+   position: relative;
+   .mainImport {
+      margin-top: 10px;
+      margin-left: 10px;
+   }
+}

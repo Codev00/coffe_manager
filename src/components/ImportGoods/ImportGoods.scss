@@ -1,0 +1,42 @@
+.importGoods {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   h3 {
+      margin-bottom: 2.5rem;
+   }
+   .detail {
+      width: 70%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 0.7rem;
+      & > span {
+         color: #333;
+      }
+   }
+   .goods {
+      margin-top: 3rem;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+   }
+   .footerImport {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 8rem;
+      .totalPrice {
+         font-size: 1.5rem;
+         font-weight: bold;
+      }
+      .importNav {
+         width: 50%;
+         display: flex;
+         justify-content: space-between;
+      }
+   }
+}

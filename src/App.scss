@@ -5,6 +5,11 @@
    background-color: $primary_Color;
    color: $text_Color;
    font-family: "Inter", sans-serif;
+   overflow: auto;
+   &::-webkit-scrollbar {
+      width: 0 !important;
+      display: none;
+   }
 }
 
 #Dark {

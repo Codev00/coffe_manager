@@ -1,0 +1,49 @@
+.sidebar {
+   margin: 10px 0;
+   position: relative;
+   .menuItem {
+      background: linear-gradient(
+         106deg,
+         rgba(255, 225, 188, 1) 22%,
+         rgba(255, 207, 209, 1) 52%,
+         rgba(243, 198, 241, 1) 91%
+      );
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 15rem;
+      border-radius: 0.7rem;
+      position: fixed;
+      width: 16rem;
+      .item {
+         display: flex;
+         align-items: center;
+         gap: 3rem;
+         margin-left: 4rem;
+         height: 2.5rem;
+         position: relative;
+         transition: all 300ms ease;
+         border-radius: 0.7rem;
+         a {
+            font-size: 1.5rem;
+            text-decoration: none;
+         }
+         &:hover {
+            cursor: pointer;
+         }
+      }
+      .active {
+         background: #f799a354;
+         margin-left: 0;
+         font-weight: bold;
+         &::before {
+            content: "";
+            width: 8px;
+            height: 100%;
+            background: #ff919d;
+            margin-right: calc(1rem - 8px);
+         }
+      }
+   }
+}
