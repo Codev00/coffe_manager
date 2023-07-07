@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,32 +6,39 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
-function createData(
-   name: string,
-   calories: number,
-   fat: number,
-   carbs: number,
-   protein: number
-) {
-   return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-   createData("Eclair", 262, 16.0, 24, 6.0),
-   createData("Cupcake", 305, 3.7, 67, 4.3),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-   createData("Gingerbrea", 356, 16.0, 49, 3.9),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-   createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../store";
+import { getDetailBill, setTotal } from "../../redux/global.slice";
+import http from "../../axios/http";
 
 export default function BasicTable() {
+   const curBill = useSelector((state: RootState) => state.global.CurrentBill);
+   const CurrentTable = useSelector(
+      (state: RootState) => state.global.ChoosedTable
+   );
+   const billDetail = useSelector(
+      (state: RootState) => state.global.billDetails
+   );
+   const dispatch = useDispatch();
+   const [bill, setBill] = useState({
+      MaNV: 1,
+      MaKV: CurrentTable?.MaKV,
+      MaBan: CurrentTable?.MaBan,
+      TrangThai: 0,
+      TongThu: 0,
+      MaCH: CurrentTable?.MaCH,
+   });
+   const appDispatch = useAppDispatch();
+   // settotal
+   useEffect(() => {
+      appDispatch(getDetailBill(CurrentTable?.MaHD));
+   }, [CurrentTable, curBill]);
+   useEffect(() => {
+      let total = billDetail.reduce((acc, cur) => {
+         return acc + cur.Gia * cur.SoLuong;
+      }, 0);
+      dispatch(setTotal(total));
+   }, [billDetail, curBill]);
    return (
       <TableContainer component={Paper}>
          <Table sx={{ minWidth: 300 }} aria-label="simple table">
@@ -51,9 +58,9 @@ export default function BasicTable() {
                </TableRow>
             </TableHead>
             <TableBody>
-               {rows.map((row) => (
+               {billDetail.map((row, index) => (
                   <TableRow
-                     key={row.name}
+                     key={index}
                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                      <TableCell
@@ -61,11 +68,14 @@ export default function BasicTable() {
                         scope="row"
                         sx={{ maxWidth: 50 }}
                      >
-                        {row.name}
+                        {row.TenSP}
                      </TableCell>
-                     <TableCell align="right">{row.calories}</TableCell>
-                     <TableCell align="right">{row.fat}</TableCell>
-                     <TableCell align="right">{row.carbs}</TableCell>
+                     <TableCell align="right">{row.Gia}</TableCell>
+                     <TableCell align="right">{row.SoLuong}</TableCell>
+                     <TableCell align="right">
+                        {row.Gia * row.SoLuong -
+                           row.Gia * row.SoLuong * row.ChietKhau}
+                     </TableCell>
                      <TableCell align="right">
                         <i className="fa-solid fa-pen-to-square"></i> |{" "}
                         <i className="fa-solid fa-delete-left"></i>

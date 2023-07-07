@@ -8,7 +8,6 @@ type Props = {
 const Default = ({ children }: Props): JSX.Element => {
    return (
       <div className="wrapper">
-         <Navbar />
          <div className="container-fluid">{children}</div>
       </div>
    );

@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./redux/login.slice";
 import { useDispatch } from "react-redux";
+import globalReducer from "./redux/global.slice";
 
 export const store = configureStore({
-   reducer: { user: loginReducer },
+   reducer: { user: loginReducer, global: globalReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
