@@ -19,10 +19,6 @@ const AddProduct = () => {
    const curTable = useSelector(
       (state: RootState) => state.global.ChoosedTable
    );
-   const billDetail = useSelector(
-      (state: RootState) => state.global.billDetails
-   );
-   const [total, setTotal] = useState<number>(0);
    const [order, setOrder] = useState<number>(0);
    const [quantity, setQuantity] = useState<number>(1);
    const data: DetailBillType = {

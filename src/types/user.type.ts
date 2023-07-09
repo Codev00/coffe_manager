@@ -50,6 +50,7 @@ export type Bill = {
    TrangThai: boolean | number;
    TongThu: number;
    MaCH: number;
+   created_at: Date;
 };
 
 export type ProductType = {
@@ -67,6 +68,7 @@ export type DetailBillType = {
 };
 
 export type Order = {
+   id: number;
    TenSP: string;
    Gia: number;
    SoLuong: number;

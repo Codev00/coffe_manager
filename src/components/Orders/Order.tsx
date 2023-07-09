@@ -11,6 +11,7 @@ import {
    setAddModal,
    setChoosedTable,
    setMaHD,
+   setNotification,
    setPay,
    setPayBill,
 } from "../../redux/global.slice";
@@ -37,6 +38,8 @@ const Order = () => {
       (state: RootState) => state.global.billDetails
    );
    const table = useSelector((state: RootState) => state.global.table);
+   const msg = useSelector((state: RootState) => state.global.msg);
+
    useEffect(() => {
       http.get<Staff>("/staff/" + curBill.MaNV).then((res) => {
          setStaff(res.data);
@@ -50,6 +53,7 @@ const Order = () => {
          appDispatch(getTable(MaCH));
          appDispatch(setChoosedTable([]));
          dispatch(setMaHD(false));
+         dispatch(setNotification(true));
       } catch (error) {
          console.log(error);
       }

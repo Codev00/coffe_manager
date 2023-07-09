@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import "./Home.scss";
 import { RootState, useAppDispatch } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,7 @@ const NoBill = () => {
       TrangThai: 0,
       TongThu: 0,
       MaCH: MaCH,
+      created_at: new Date(),
    });
 
    useEffect(() => {
@@ -34,6 +35,7 @@ const NoBill = () => {
          TrangThai: 0,
          TongThu: 0,
          MaCH: MaCH,
+         created_at: new Date(),
       });
    }, [CurrentTable]);
 
@@ -54,7 +56,7 @@ const NoBill = () => {
       appDispatch(editTable({ id: CurrentTable.MaBan, data: newTable }));
       dispatch(setMaHD(true));
    };
-   useEffect(() => {
+   useLayoutEffect(() => {
       if (CurrentTable.MaHD) {
          dispatch(setMaHD(true));
       }

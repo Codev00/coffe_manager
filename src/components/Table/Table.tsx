@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import "./Table.scss";
 import { RootState, useAppDispatch } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +34,7 @@ const Table = () => {
       });
    }, [RoomId, table]);
 
-   useEffect(() => {
+   useLayoutEffect(() => {
       if (currentTable.MaHD) {
          dispatch(setMaHD(true));
          appDispatch(getBill(currentTable.MaHD));

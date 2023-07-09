@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import "./Home.scss";
 import { Room, Table } from "../../components";
 import Order from "../../components/Orders/Order";
@@ -30,7 +30,7 @@ const Home = () => {
          navigate("/user");
       }
    }, [username]);
-   useEffect(() => {
+   useLayoutEffect(() => {
       dispatch(getStaff(MaCH));
       dispatch(getArea(MaCH));
       dispatch(getTable(MaCH));

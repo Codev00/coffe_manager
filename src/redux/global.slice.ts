@@ -13,7 +13,7 @@ import {
 } from "../types/user.type";
 
 interface GlobalState {
-   openModal: boolean;
+   Notification: boolean;
    navSelect: number;
    MaCH: number;
    MaHD: boolean;
@@ -30,9 +30,10 @@ interface GlobalState {
    CurrentBill: Bill;
    addModal: boolean;
    total: number;
+   msg: string;
 }
 const initialState: GlobalState = {
-   openModal: false,
+   Notification: false,
    navSelect: 0,
    MaCH: 1,
    MaHD: false,
@@ -47,6 +48,7 @@ const initialState: GlobalState = {
    billDetails: [],
    product: [],
    total: 0,
+   msg: "",
    ChoosedTable: {
       MaBan: 0,
       TenBan: "",
@@ -63,6 +65,7 @@ const initialState: GlobalState = {
       TrangThai: 0,
       TongThu: 0,
       MaCH: 0,
+      created_at: new Date(),
    },
 };
 
@@ -277,6 +280,23 @@ export const addDetailbill = createAsyncThunk(
    }
 );
 
+export const deleteDetailBill = createAsyncThunk(
+   "global/deleteDetailBill",
+   async (id: number, thunkAPI) => {
+      try {
+         const res = await http.delete(`/billDetail/delete/${id}`, {
+            signal: thunkAPI.signal,
+         });
+         return res.data;
+      } catch (error: any) {
+         if (error.name === "AxiosError" && error.response?.status === 500) {
+            return thunkAPI.rejectWithValue(error.response.data);
+         }
+         throw error;
+      }
+   }
+);
+
 export const getDetailBill = createAsyncThunk(
    "global/getDetailBill",
    async (id: number, thunkAPI) => {
@@ -361,6 +381,12 @@ const globalSlice = createSlice({
       setTotal: (state, actions) => {
          state.total = actions.payload;
       },
+      setMsg: (state, actions) => {
+         state.msg = actions.payload;
+      },
+      setNotification: (state, actions) => {
+         state.Notification = actions.payload;
+      },
    },
    extraReducers: (builder) => {
       builder
@@ -397,11 +423,17 @@ const globalSlice = createSlice({
          .addCase(addDetailbill.fulfilled, (state, action) => {
             console.log(action.payload);
          })
+         .addCase(deleteDetailBill.fulfilled, (state, action) => {
+            console.log(action.payload);
+         })
          .addCase(getDetailBill.fulfilled, (state, action) => {
             state.billDetails = action.payload;
          })
          .addCase(setPay.fulfilled, (state, action) => {
-            console.log(action.payload);
+            state.msg = action.payload;
+         })
+         .addCase(getListBill.fulfilled, (state, action) => {
+            state.listBill = action.payload;
          });
    },
 });
@@ -414,6 +446,8 @@ export const {
    setChoosedTable,
    setAddModal,
    setTotal,
+   setMsg,
+   setNotification,
 } = globalSlice.actions;
 const globalReducer = globalSlice.reducer;
 export default globalReducer;

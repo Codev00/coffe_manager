@@ -8,7 +8,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store";
-import { getDetailBill, setTotal } from "../../redux/global.slice";
+import {
+   deleteDetailBill,
+   getDetailBill,
+   setTotal,
+} from "../../redux/global.slice";
 import http from "../../axios/http";
 
 export default function BasicTable() {
@@ -20,14 +24,6 @@ export default function BasicTable() {
       (state: RootState) => state.global.billDetails
    );
    const dispatch = useDispatch();
-   const [bill, setBill] = useState({
-      MaNV: 1,
-      MaKV: CurrentTable?.MaKV,
-      MaBan: CurrentTable?.MaBan,
-      TrangThai: 0,
-      TongThu: 0,
-      MaCH: CurrentTable?.MaCH,
-   });
    const appDispatch = useAppDispatch();
    // settotal
    useEffect(() => {
@@ -39,6 +35,15 @@ export default function BasicTable() {
       }, 0);
       dispatch(setTotal(total));
    }, [billDetail, curBill]);
+   const handleDelete = async (id: number) => {
+      try {
+         await appDispatch(deleteDetailBill(id));
+         await appDispatch(getDetailBill(CurrentTable?.MaHD));
+      } catch (error) {
+         console.log(error);
+      }
+   };
+   useEffect(() => {}, [billDetail]);
    return (
       <TableContainer component={Paper}>
          <Table sx={{ minWidth: 300 }} aria-label="simple table">
@@ -77,8 +82,12 @@ export default function BasicTable() {
                            row.Gia * row.SoLuong * row.ChietKhau}
                      </TableCell>
                      <TableCell align="right">
-                        <i className="fa-solid fa-pen-to-square"></i> |{" "}
-                        <i className="fa-solid fa-delete-left"></i>
+                        <i className="fa-solid fa-pen-to-square cursor-pointer"></i>{" "}
+                        |{" "}
+                        <i
+                           className="fa-solid fa-delete-left cursor-pointer"
+                           onClick={() => handleDelete(row.id)}
+                        ></i>
                      </TableCell>
                   </TableRow>
                ))}
